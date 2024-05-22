@@ -25,7 +25,8 @@ public class SecurityFilter extends OncePerRequestFilter {
     private TokenService tokenService;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+            throws ServletException, IOException {
         String token = recoveryToken(request);
         String login = tokenService.validateTokenAndGetSubject(token);
 
@@ -33,7 +34,10 @@ public class SecurityFilter extends OncePerRequestFilter {
             User user = userRepository.findByEmail(login).orElseThrow(() -> new RuntimeException("User Not Found"));
             List<SimpleGrantedAuthority> authorities = user.getRoles()
                     .stream()
-                    .map(role -> new SimpleGrantedAuthority(role.name()))
+                    .map(role -> {
+                        String roleFull = "ROLE_" + role.name(); // example: "ROLE_ADMIN";
+                        return new SimpleGrantedAuthority(roleFull);
+                    })
                     .toList();
 
             var authentication = new UsernamePasswordAuthenticationToken(user, null, authorities);

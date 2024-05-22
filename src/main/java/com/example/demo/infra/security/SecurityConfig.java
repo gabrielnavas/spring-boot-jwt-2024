@@ -1,6 +1,7 @@
 package com.example.demo.infra.security;
 
 
+import com.example.demo.domain.user.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -34,8 +35,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/user").hasAnyRole("ADMIN", "USER")
-                        .requestMatchers(HttpMethod.GET, "/admin/user").hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/user").hasAnyRole(Role.ADMIN.name(), Role.USER.name())
+                        .requestMatchers(HttpMethod.GET, "/admin/user").hasAnyRole(Role.ADMIN.name())
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
