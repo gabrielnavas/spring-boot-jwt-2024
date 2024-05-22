@@ -28,3 +28,11 @@ curl --location --request GET 'http://localhost:8080/user' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer <token>'
 ```
+
+- Admin User
+
+```shell
+curl --location --request GET 'http://localhost:8080/admin/user' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer <token>'
+```
