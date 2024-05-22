@@ -8,6 +8,9 @@ spring:
     password:
 
 api:
+  admin:
+    email: admin@admin.com
+    password: 123456
   security:
     token:
       secret: secret123
