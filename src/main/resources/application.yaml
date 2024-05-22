@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: login-register
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+api:
+  security:
+    token:
+      secret: secret123
+  zone:
+    offset: -03:00
+  cors:
+    allowed-origins: "*"
+    allowed-methods: "GET,POST"
