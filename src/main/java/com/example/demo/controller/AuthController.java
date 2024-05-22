@@ -1,11 +1,11 @@
 package com.example.demo.controller;
 
-import com.example.demo.domain.user.Role;
-import com.example.demo.domain.user.User;
 import com.example.demo.dto.AuthResponseDTO;
 import com.example.demo.dto.LoginRequestDTO;
 import com.example.demo.dto.RegisterRequestDTO;
 import com.example.demo.infra.security.TokenService;
+import com.example.demo.models.Role;
+import com.example.demo.models.User;
 import com.example.demo.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

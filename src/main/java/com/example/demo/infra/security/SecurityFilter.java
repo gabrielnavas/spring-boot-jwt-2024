@@ -1,6 +1,6 @@
 package com.example.demo.infra.security;
 
-import com.example.demo.domain.user.User;
+import com.example.demo.models.User;
 import com.example.demo.repository.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
