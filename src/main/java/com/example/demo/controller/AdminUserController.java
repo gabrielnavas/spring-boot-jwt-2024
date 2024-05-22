@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/admin/user")
+public class AdminUserController {
     @GetMapping
     public ResponseEntity<String> getUser() {
-        return ResponseEntity.ok("admin and user success!!");
+        return ResponseEntity.ok("admin success!!");
     }
 }

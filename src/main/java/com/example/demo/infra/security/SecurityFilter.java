@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-import java.util.Collections;
 
 @Component
 public class SecurityFilter extends OncePerRequestFilter {
@@ -30,9 +29,10 @@ public class SecurityFilter extends OncePerRequestFilter {
         String login = tokenService.validateTokenAndGetSubject(token);
 
         if (login != null) {
-            User user = userRepository.findByEmail(login).orElseThrow(() -> new RuntimeException("User Not Found")); // busca usuario
-            var authorities = Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER")); // as ROLES do usuário, poderia vir do User modal
-            var authentication = new UsernamePasswordAuthenticationToken(user, null, authorities); // instacia a authenticacao
+            User user = userRepository.findByEmail(login).orElseThrow(() -> new RuntimeException("User Not Found"));
+            var authorities = user.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.name())).toList();
+
+            var authentication = new UsernamePasswordAuthenticationToken(user, null, authorities); // instacia a authenticação
             SecurityContextHolder.getContext().setAuthentication(authentication); // adiciona essa auth no contexto do spring boot
         }
 
