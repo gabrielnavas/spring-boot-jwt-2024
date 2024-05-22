@@ -1,4 +1,4 @@
-package com.example.demo.infra.security.cors;
+package com.example.demo.infra.cors;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
